@@ -96,10 +96,10 @@ List all Digimon owned by Jennifer Orwell.
 List all animals owned by Dean Winchester that haven't tried to escape.
 Who owns the most animals?
 */
-SELECT name, full_name FROM animals JOIN owners ON owners.id = owner_id WHERE full_name = 'Melody Pond';
-SELECT animals.name, species.name FROM animals JOIN species ON species.id = species_id WHERE species.name = 'Pokemon';
-SELECT name, full_name FROM animals RIGHT JOIN owners ON owners.id = owner_id;
-SELECT species.name, COUNT(animals.name) FROM animals JOIN species ON species.id = species_id GROUP BY species.name;
-SELECT animals.name, species.name, full_name FROM animals JOIN owners ON owners.id = owner_id JOIN species ON species.id = species_id WHERE full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
-SELECT name, escape_attemps, full_name FROM animals JOIN owners ON owners.id = owner_id WHERE escape_attemps = 0 and full_name = 'Dean Winchester';
-SELECT COUNT(name), full_name from animals JOIN owners ON owners.id = owner_id GROUP BY full_name ORDER BY COUNT(name) DESC;
+SELECT name, full_name FROM animals JOIN owners ON owners.id = animals.owner_id WHERE full_name = 'Melody Pond';
+SELECT animals.name, species.name FROM animals JOIN species ON species.id = animals.species_id WHERE species.name = 'Pokemon';
+SELECT name, full_name FROM animals RIGHT JOIN owners ON owners.id = animals.owner_id;
+SELECT species.name, COUNT(animals.name) FROM animals JOIN species ON species.id = animals.species_id GROUP BY species.name;
+SELECT animals.*, species.name, full_name FROM animals JOIN owners ON owners.id = animals.owner_id JOIN species ON species.id = animals.species_id WHERE full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
+SELECT name, escape_attemps, full_name FROM animals JOIN owners ON owners.id = animals.owner_id WHERE escape_attemps = 0 and full_name = 'Dean Winchester';
+SELECT COUNT(name), full_name from animals JOIN owners ON owners.id = animals.owner_id GROUP BY full_name ORDER BY COUNT(name) DESC;
