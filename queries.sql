@@ -1,5 +1,8 @@
 /*Queries that provide answers to the questions from all projects.*/
 
+/*******************************
+Project 1: create animals table
+********************************/
 SELECT * FROM animals WHERE name LIKE '%mon';
 SELECT name FROM animals WHERE date_of_birth BETWEEN '2016-01-01' AND '2019-12-31';
 SELECT name FROM animals WHERE neutered = true AND escape_attemps < 3;
@@ -8,6 +11,10 @@ SELECT (name, escape_attemps) FROM animals WHERE weight_kg > 10.5;
 SELECT * FROM animals WHERE neutered = true;
 SELECT * FROM animals WHERE name != 'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
+
+/*****************************************
+Project 2: query and update animals table
+******************************************/
 
 /*Inside a transaction update the animals table by setting the species column to unspecified. Verify that change was made. Then roll back the change and verify that the species columns went back to the state before the transaction.*/
 BEGIN;
@@ -74,3 +81,25 @@ SELECT AVG(weight_kg) FROM animals;
 SELECT neutered, SUM(escape_attemps) FROM animals GROUP BY neutered;
 SELECT species, MIN(weight_kg), MAX(weight_kg) FROM animals GROUP by species;
 SELECT species, AVG(escape_attemps) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31' GROUP BY species;
+
+/********************************
+Project 3: query multiple tables
+*********************************/
+
+/*
+Write queries (using JOIN) to answer the following questions:
+What animals belong to Melody Pond?
+List of all animals that are pokemon (their type is Pokemon).
+List all owners and their animals, remember to include those that don't own any animal.
+How many animals are there per species?
+List all Digimon owned by Jennifer Orwell.
+List all animals owned by Dean Winchester that haven't tried to escape.
+Who owns the most animals?
+*/
+SELECT name, full_name FROM animals JOIN owners ON owners.id = owner_id WHERE full_name = 'Melody Pond';
+SELECT animals.name, species.name FROM animals JOIN species ON species.id = species_id WHERE species.name = 'Pokemon';
+SELECT name, full_name FROM animals RIGHT JOIN owners ON owners.id = owner_id;
+SELECT species.name, COUNT(animals.name) FROM animals JOIN species ON species.id = species_id GROUP BY species.name;
+SELECT animals.name, species.name, full_name FROM animals JOIN owners ON owners.id = owner_id JOIN species ON species.id = species_id WHERE full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
+SELECT name, escape_attemps, full_name FROM animals JOIN owners ON owners.id = owner_id WHERE escape_attemps = 0 and full_name = 'Dean Winchester';
+SELECT COUNT(name), full_name from animals JOIN owners ON owners.id = owner_id GROUP BY full_name ORDER BY COUNT(name) DESC;
