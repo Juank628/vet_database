@@ -69,3 +69,7 @@ CREATE TABLE visits(
     CONSTRAINT fk_animal FOREIGN KEY(animal_id) REFERENCES animals(id),
     CONSTRAINT fk_vet FOREIGN KEY(vet_id) REFERENCES vets(id)
 );
+
+/*database performance audit*/
+create index animals_id_index on visits(animal_id);
+create index vet_id_index on visits(vet_id);
