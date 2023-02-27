@@ -142,6 +142,11 @@ SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 - Twitter: [@juancadev81](https://twitter.com/juancadev81)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/juan-carlos-sanchez-zunino)
 
+👤 **Osvaldo Barrios**
+- Twitter : [@OsvaldoBarrio20](https://twitter.com/OsvaldoBarrio20)
+- GitHub : [@OsvaldoBC](https://github.com/OsvaldoBC)
+- LinkedIn: [osvaldo-barrios-data-science](https://linkedin.com/in/osvaldo-barrios-data-science)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
