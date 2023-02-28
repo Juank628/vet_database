@@ -117,3 +117,10 @@ SELECT animals.name, vets.name, visits.date_of_visit FROM visits JOIN vets ON ve
 SELECT animals.*, species.name AS species, owners.full_name AS owner_name, vets.name as vet_name, visits.date_of_visit FROM visits JOIN vets ON vets.id = visits.vet_id JOIN animals ON animals.id = visits.animal_id JOIN owners ON owners.id = animals.owner_id JOIN species ON species.id = animals.species_id ORDER BY visits.date_of_visit DESC LIMIT 1;
 SELECT COUNT(vets.name) FROM visits JOIN vets ON visits.vet_id=vets.id LEFT JOIN specializations ON vets.id=specializations.vet_id WHERE species_id IS NULL;
 SELECT species.name, COUNT(species.name) FROM visits JOIN vets ON visits.vet_id=vets.id JOIN animals ON visits.animal_id=animals.id JOIN species ON animals.species_id=species.id WHERE vets.name='Maisy Smith' GROUP BY species.name ORDER BY COUNT(species.name) DESC LIMIT 1;
+
+
+/*******************************************
+Project 5: Audit database performance
+*******************************************/
+
+explain analyze SELECT * FROM visits where vet_id = 2;
