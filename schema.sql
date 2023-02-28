@@ -74,5 +74,6 @@ CREATE TABLE visits(
 Project 5: Audit database performance
 *******************************************/
 
-create index animals_id_index on visits(animal_id);
-create index vet_id_index on visits(vet_id);
+CREATE INDEX animal_idx ON visits (animal_id);
+CREATE INDEX vet_idx ON visits (vet_id);
+
